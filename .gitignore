@@ -5,3 +5,5 @@ yolov8x.pt
 yolov8n.pt
 /runs
 /input_videos
+/output_videos
+/models
