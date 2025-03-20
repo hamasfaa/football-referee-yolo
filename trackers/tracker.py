@@ -126,7 +126,9 @@ class Tracker:
             for track_id, player in player_dict.items():
                 # bbox = player["bbox"]
                 # frame = sv.draw_bbox(frame, bbox, (0, 255, 0))
-                frame = self.draw_ellipse(frame, player["bbox"], (0, 255, 0), track_id)
+                color= player.get("team_color", (0,255,255))
+                team_id = player.get("team_id", 0)
+                frame = self.draw_ellipse(frame, player["bbox"], color, team_id)
                 
             for _, referee in referee_dict.items():
                 # bbox = referee["bbox"]
