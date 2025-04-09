@@ -6,7 +6,7 @@ from player_ball_assigner import PlayerBallAssigner
 import numpy as np
 
 def main():
-    video_frames = read_video('input_videos/08fd33_4.mp4')
+    video_frames = read_video('input_videos/tes.mp4')
     
     
     tracker = Tracker('models/tes/best.pt')
@@ -30,7 +30,7 @@ def main():
     
     for frame_number, player_track in enumerate(tracks["players"]):
         for player_id, player in player_track.items():
-            team_id = team_assigner.get_player_team(video_frames[frame_number], player["bbox"], player_id)
+            team_id = team_assigner.get_player_team(video_frames[frame_number], player["bbox"])
             
             tracks["players"][frame_number][player_id]["team_id"] = team_id
             tracks["players"][frame_number][player_id]["team_color"] = team_assigner.team_colors[team_id]
@@ -51,7 +51,7 @@ def main():
     # Draw circles around the players and referees
     output_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
     
-    save_video(output_frames, 'output_videos/output.avi')
+    save_video(output_frames, 'output_videos/output_new.avi')
     
 if __name__ == "__main__":
     main()
